@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from '../Button/Button';
 import styles from './JournalForm.module.css';
+import cn from 'classnames';
 
 function JournalForm({ onSubmit }) {
   const [formValidState, setFormValidState] = useState({
@@ -43,29 +44,48 @@ function JournalForm({ onSubmit }) {
   return (
     <>
       <form className={styles['journal-form']} onSubmit={addJournalItem}>
-        <input
-          type="text"
-          name="title"
-          className={`${styles['input']} ${
-            formValidState.title ? '' : styles['invalid']
-          }`}
-        />
-        <input
-          type="date"
-          name="date"
-          className={`${styles['input']} ${
-            formValidState.date ? '' : styles['invalid']
-          }`}
-        />
-        <input type="text" name="tag" />
+        <div>
+          <input
+            type="text"
+            name="title"
+            className={cn(styles['input-title'], {
+              [styles['invalid']]: !formValidState.title
+            })}
+          />
+          <button className={styles['button-delete']}>
+            <img src="/archive.svg" alt="archive" />
+          </button>
+        </div>
+        <div className={styles['form-row']}>
+          <label htmlFor="date" className={styles['form-label']}>
+            <img src="/calendar.svg" alt="Иконка календаря" />
+            <span>Дата</span>
+          </label>
+          <input
+            type="date"
+            name="date"
+            id="date"
+            className={cn(styles['input'], {
+              [styles['invalid']]: !formValidState.date
+            })}
+          />
+        </div>
+        <div className={styles['form-row']}>
+          <label htmlFor="tag" className={styles['form-label']}>
+            <img src="/folder.svg" alt="Иконка папки" />
+            <span>Метки</span>
+          </label>
+          <input type="text" name="tag" id="tag" className={styles['input']} />
+        </div>
+
         <textarea
           name="post"
           id=""
           cols="30"
           rows="10"
-          className={`${styles['input']} ${
-            formValidState.post ? '' : styles['invalid']
-          }`}
+          className={cn(styles['input'], {
+            [styles['invalid']]: !formValidState.post
+          })}
         ></textarea>
         <Button text="Сохранить" />
       </form>

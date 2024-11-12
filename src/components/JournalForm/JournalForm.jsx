@@ -1,14 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import styles from './JournalForm.module.css';
 import cn from 'classnames';
 
+const INITIAL_STATE = {
+  title: true,
+  date: true,
+  post: true
+};
 function JournalForm({ onSubmit }) {
-  const [formValidState, setFormValidState] = useState({
-    title: true,
-    date: true,
-    post: true
-  });
+  const [formValidState, setFormValidState] = useState(INITIAL_STATE);
+
+  useEffect(() => {
+    let timerId;
+    if (!formValidState.title || !formValidState.date || !formValidState.post) {
+      timerId = setTimeout(() => {
+        setFormValidState(INITIAL_STATE);
+      }, 2000);
+    }
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [formValidState]);
   const addJournalItem = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);

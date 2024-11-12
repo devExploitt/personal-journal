@@ -24,7 +24,6 @@ function App() {
 
   useEffect(() => {
     if (items.length) {
-      console.log('zapis');
       localStorage.setItem('data', JSON.stringify(items));
     }
   }, [items]);

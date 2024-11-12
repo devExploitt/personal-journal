@@ -1,17 +1,20 @@
-.button {
-  border-radius: 6px;
-  padding: 8px 30px;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  font-size: 16px;
+.input {
   border: none;
-  color: white;
+  background: none;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  font-family: 'Sourse Sans 3', sans-serif;
+  border-bottom: 1px solid #323232;
+  width: 100%;
 }
 
-.accent {
-  background: #312eb5;
+.input-title {
+  font-size: 32px;
 }
-.accent:hover {
-  background: #222096;
+
+.invalid {
+  border: 1px solid red;
+  background: rgb(166, 72, 72);
 }

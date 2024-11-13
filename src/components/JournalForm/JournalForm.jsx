@@ -1,9 +1,10 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useContext, useEffect, useReducer, useRef } from 'react';
 import Button from '../Button/Button';
 import styles from './JournalForm.module.css';
 import cn from 'classnames';
 import { formReducer, INITIAL_STATE } from './JournalForm.state';
 import Input from '../Input/Input';
+import { UserContext } from '../../context/user.context.jsx';
 
 function JournalForm({ onSubmit }) {
   const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE);
@@ -11,6 +12,7 @@ function JournalForm({ onSubmit }) {
   const titleRef = useRef();
   const dateRef = useRef();
   const postRef = useRef();
+  const { userId } = useContext(UserContext);
 
   const focusError = (isValid) => {
     switch (true) {
@@ -61,6 +63,7 @@ function JournalForm({ onSubmit }) {
   return (
     <>
       <form className={styles['journal-form']} onSubmit={addJournalItem}>
+        {userId}
         <div>
           <Input
             type="text"

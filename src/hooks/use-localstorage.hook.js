@@ -8,11 +8,11 @@ export function useLocalStorage(key) {
     if (res) {
       setData(res);
     }
-  }, []);
+  }, [key]);
 
-  const saveData = (newData) => {
-    localStorage.setItem(key, JSON.stringify(newData));
-    setData(newData);
+  const saveData = (newDAta) => {
+    localStorage.setItem('data', JSON.stringify(newDAta));
+    setData(newDAta);
   };
 
   return [data, saveData];

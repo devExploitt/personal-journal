@@ -12,7 +12,6 @@ function JournalForm({ onSubmit, data, onDelete }) {
   const titleRef = useRef();
   const dateRef = useRef();
   const postRef = useRef();
-  const userIdRef = useRef();
   const { userId } = useContext(UserContext);
 
   const focusError = (isValid) => {
@@ -83,7 +82,6 @@ function JournalForm({ onSubmit, data, onDelete }) {
   return (
     <>
       <form className={styles['journal-form']} onSubmit={addJournalItem}>
-        {userId}
         <div className={styles['form-row']}>
           <Input
             type="text"
